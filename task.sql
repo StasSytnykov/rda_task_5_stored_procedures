@@ -1,4 +1,6 @@
-USE ShopDB; 
+DROP DATABASE ShopDB;
+
+USE ShopDB;
 
 -- Create your stored procedure here
 DELIMITER //
@@ -8,6 +10,7 @@ CREATE PROCEDURE get_warehouse_product_inventory(
 BEGIN
     SELECT Name, WarehouseAmount FROM ProductInventory
     LEFT JOIN Products
-    ON ProductInventory.WarehouseID = ID;
+    ON ProductInventory.ProductID = Products.ID
+    WHERE ProductInventory.WarehouseID = ID;
 END //
-DELIMITER;
+DELIMITER ;
